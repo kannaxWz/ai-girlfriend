@@ -1,28 +1,15 @@
 require('dotenv').config();
 
-const { Client } = require('pg');
+const express = require('express');
+const app = express();
+const PORT = 5000;
 
-const client = new Client ({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'aigirlfriend_db',
-    password: process.env.DB_PASSWORD,
-    port: 5432,
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send("Hello world");
 });
 
-async function testConnection() {
-    try {
-        await client.connect();
-        console.log('Succesfully connected to local PostgreSQL instance!');
-
-        const res = await client.query('SELECT NOW() as current_server_time;');
-        console.log('Database server time verification:', res.rows[0].current_server_time);
-
-    } catch (err) {
-        console.error('Database connection error occured: ', err.stack);
-    } finally {
-        await client.end();
-    }
-}
-
-testConnection();
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}"`);
+});
