@@ -6,7 +6,11 @@ const PORT = 5000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+const pool = require('./config/db.js')
+
+app.get('/', async (req, res) => {
+    const resDb = await pool.query('SELECT NOW()');
+    console.log('Database connected from Express! Time:', resDb.rows[0].now);
     res.send("Hello world");
 });
 
