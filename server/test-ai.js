@@ -24,7 +24,3 @@ async function verifyAIConnection() {
 }
 
 verifyAIConnection();
-
-  
-
-
