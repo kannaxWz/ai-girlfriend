@@ -13,6 +13,6 @@ CREATE TABLE messages (
     conversation_id INT REFERENCES conversations(conversation_id) ON DELETE CASCADE,
     role VARCHAR(50) NOT NULL,
     content TEXT,
-    created_at TIMESTAMP
+    created_at SET DEFAULT CURRENT_TIMESTAMP;
 );
 

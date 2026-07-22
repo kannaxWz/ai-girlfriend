@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 5000;
 const { GoogleGenAI } = require('@google/genai');
@@ -8,6 +9,7 @@ const { GoogleGenAI } = require('@google/genai');
 const ai = new GoogleGenAI ({ apiKey: process.env.GEMINI_API_KEY});
 
 app.use(express.json());
+app.use(cors());
 
 const pool = require('./config/db.js')
 
